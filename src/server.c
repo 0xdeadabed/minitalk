@@ -19,12 +19,17 @@ void	handler_siguser1(int signum)
 
 int	main()
 {
-	//struct sigaction	usr1;
-	//struct sigaction	usr2;
+	struct sigaction	user1;
+	struct sigaction	user2;
 	pid_t	pid;
 	
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	while (1)
-		pause();
+	{
+		ft_memset(&user1, 0, sizeof(struct sigaction));
+		ft_memset(&user2, 0, sizeof(struct sigaction));
+		user1.sa_flag = SA_SIGINFO();
+		user2.sa_flag = SA_SIGINFO();
+	}
 }
