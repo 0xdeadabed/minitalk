@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:37:38 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/10 11:04:48 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/11/27 12:49:24 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ void	init(t_options *option)
 	option->sign = 1;
 }
 
-/*
- * Apres avoir initializer les option, et etre arriver sur un "%" et que apres "%" n'est pas un specifier, ici on determine c'est quoi l'index actuel et on change les option d'apres le flag.
- * il y a un peu de complexite de printf ici, certains flags peuvent ecraser les autres s'ils presentent.
- * plus d'info : https://www.cplusplus.com/reference/cstdio/printf/
- * 				: https://www.cypress.com/file/54441/download
-*/
 void	check_flags(va_list ap, char *format, t_options *option, int i)
 {
 	if (format[i] == '0' && option->width == 0 && option->precision == -1)
@@ -42,13 +36,6 @@ void	check_flags(va_list ap, char *format, t_options *option, int i)
 		width_precision(ap, format, option, i);
 }
 
-/*
- * width et precision sont encore plus complexes, pour bien comprendre il faut vraiment bien comprendre le printf().
- * regarder man 3 printf
- * Ici on determine simplement les regle de width ou precision et les traite d'apres les flags
- * Si l'index actuel est un chifre et que le flag de precision n'est pas actif la valeur de width serait ce chifre. Mais si precision est actif la valeur de precision serait ce chifre.
- * Autrement si l'index est un '*' et que precision est actif 
-*/
 void	width_precision(va_list ap, char *format, t_options *option, int i)
 {
 	if (ft_isdigit(format[i]))

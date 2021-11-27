@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:39:18 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/09 15:57:31 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/11/27 12:48:35 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ void	zero_logic(t_options *option, char format)
 		&& option->spec != '%')
 		option->zero = 0;
 }
-
-/*
- * Initialier nos option dabord et puis allouer la memoire a cette taille.
- * 	Si l'allocation de memoire echoue return -1.
- * Iterer tant qu'il y a une chaine de chars.
- * 	Afficher char par char tant qu'il y a pas de "%" et qu'on est pas a la fin de la chaine.
- * 	Si l'index sur lequel on est, est un "%";
- * 		Initializer les option; [zero = 0, width = 0, precision = -1, spec = 0, nbr_base = 10, sign = 1,]
- * 		Tant que l'index suivant n'est pas la fin de la chaine de chars et que l'index sur lequel on est, n'est pas un des specifiers;
- * 			check_flag();
-*/
 
 int	parse_format(va_list ap, char *format)
 {

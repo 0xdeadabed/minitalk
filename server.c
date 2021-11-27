@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:42:15 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:43:43 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/11/27 12:47:48 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	convert_msg(int signum)
 	}
 }
 
-int	main()
+int	main(void)
 {
 	pid_t	pid;
-	
+
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	signal(SIGUSR1, convert_msg);
