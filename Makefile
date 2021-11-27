@@ -6,19 +6,20 @@
 #    By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/27 12:21:27 by hsabir            #+#    #+#              #
-#    Updated: 2021/11/27 12:35:45 by hsabir           ###   ########.fr        #
+#    Updated: 2021/11/27 12:43:43 by hsabir           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server
+CLIENT = client
 libft = libft
 printf = ft_printf
 libft_dir = ./libft
-peintf_dir = ./ft_printf
+printf_dir = ./ft_printf
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-RM = rm -rfP
+RM = rm -P
 
 $(SERVER):
 	make all -C $(libft)/
@@ -31,7 +32,7 @@ $(CLIENT):
 	$(CC) $(CFLAGS) $(printf_dir)/libftprintf.a $(libft_dir)/libft.a client.c -o client
 
 
-all: server client
+all: $(SERVER) $(CLIENT)
 
 bonus: all
 
