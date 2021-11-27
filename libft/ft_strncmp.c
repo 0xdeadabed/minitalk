@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:39:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:53:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/10/14 13:15:38 by hsabir            #+#    #+#             */
+/*   Updated: 2021/10/14 13:22:55 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include <stdint.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdlib.h>
-
-#endif
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while ((*s1 || *s2) && n)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		n--;
+		s1++;
+		s2++;
+	}
+	return (0);
+}

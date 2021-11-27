@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:42:15 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/26 14:53:17 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/11/27 09:43:43 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	convert_msg(int signum)
 	static int	byte;
 
 	if (signum == SIGUSR1)
-		byte += 1 << (7 - power);
+		byte += 1 << (31 - power);
 	power++;
-	if (power == 8)
+	if (power == 32)
 	{
 		ft_printf("%c", byte);
+		if (byte == '\0')
+			exit (EXIT_SUCCESS);
 		power = 0;
 		byte = 0;
 	}
@@ -30,8 +32,6 @@ void	convert_msg(int signum)
 
 int	main()
 {
-	//struct sigaction	usr1;
-	//struct sigaction	usr2;
 	pid_t	pid;
 	
 	pid = getpid();

@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:39:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:53:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/10/13 13:25:53 by hsabir            #+#    #+#             */
+/*   Updated: 2021/10/18 16:30:05 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include <stdint.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdlib.h>
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t	i;
 
-#endif
+	if (src == NULL && dst == NULL)
+		return (NULL);
+	if (src <= dst)
+	{
+		while (len--)
+		{
+			((unsigned char *)dst)[len] = ((unsigned char *)src)[len];
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dst);
+}

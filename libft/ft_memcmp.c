@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:39:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:53:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/10/14 13:37:28 by hsabir            #+#    #+#             */
+/*   Updated: 2021/10/18 15:46:05 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include <stdint.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdlib.h>
-
-#endif
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	while (n--)
+	{
+		if ((*(unsigned char *)s1) != (*(unsigned char *)s2))
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+	}
+	return (0);
+}

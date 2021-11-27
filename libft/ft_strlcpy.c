@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:39:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:53:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/10/13 16:31:53 by hsabir            #+#    #+#             */
+/*   Updated: 2021/10/13 17:48:37 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include <stdint.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdlib.h>
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	srcsize;
 
-#endif
+	i = 0;
+	if (src != NULL)
+		srcsize = ft_strlen(src);
+	else if (dst != NULL)
+		srcsize = ft_strlen(dst);
+	while (!(dst == NULL || src == NULL)
+		&& dstsize != 0 && src[i] && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dstsize > 0)
+		dst[i] = '\0';
+	return (srcsize);
+}

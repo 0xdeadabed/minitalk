@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:39:42 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 09:53:24 by hsabir           ###   ########.fr       */
+/*   Created: 2021/10/14 13:54:04 by hsabir            #+#    #+#             */
+/*   Updated: 2021/10/18 14:38:45 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include <stdint.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdlib.h>
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	size_t	s;
 
-#endif
+	i = 0;
+	if (needle[i] == '\0')
+		return ((char *)haystack);
+	while (haystack[i] && i < len)
+	{
+		j = 0;
+		s = i;
+		while (haystack[s] == needle[j] && s < len)
+		{
+			if (needle[j + 1] == '\0')
+				return ((char *)&haystack[i]);
+			j++;
+			s++;
+		}
+		i++;
+	}
+	return (0);
+}

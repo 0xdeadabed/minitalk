@@ -1,48 +1,52 @@
-CLIENT			=	client
-CLIENT_B		=	client_bonus
-SERVER			=	server
-SERVER_B		=	server_bonus
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/27 12:21:27 by hsabir            #+#    #+#              #
+#    Updated: 2021/11/27 12:35:45 by hsabir           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-LIBFT_DIR = ./ft_printf/libft
-LIBFT = libft.a
-PRINTF_DIR = ./ft_printf
-PRINTF = libftprintf.a
-
-INC = .
-
-SRCS = ./client.c \
-		./client_bonus.c \
-		./server.c \
-		./server_bonus.c
-
-OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
-
+SERVER = server
+libft = libft
+printf = ft_printf
+libft_dir = ./libft
+peintf_dir = ./ft_printf
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -rfP
 
-all: $(NAME)
+$(SERVER):
+	make all -C $(libft)/
+	make all -C $(printf)/
+	$(CC) $(CFLAGS) $(printf_dir)/libftprintf.a $(libft_dir)/libft.a server.c -o server
 
-bonus : re
-	@$(MAKE) -C $(LIBFT_DIR) $(PRINTF_DIR)
-	@(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) $(PRINTF_DIR) -lft
+$(CLIENT):
+	make all -C $(libft)/
+	make all -C $(printf)/
+	$(CC) $(CFLAGS) $(printf_dir)/libftprintf.a $(libft_dir)/libft.a client.c -o client
 
-$(NAME) : $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) $(PRINTF_DIR)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) $(PRINTF_DIR) -lft
 
-$(OBJS_DIR) :
-	@mkdir -p $(OBJS_DIR)
+all: server client
 
-$(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -o $@ -I $(INC) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $^
+bonus: all
+
+server: $(SERVER)
+
+client: $(CLIENT)
 
 clean:
-	${RM} ${OBJS_CLIENT} ${OBJS_SERVER} ${OBJS_SERVER_B} ${OBJS_CLIENT_B}
+	make clean -C $(libft)/
+	make clean -C $(printf)/
+	$(RM) $(CLIENT) $(SERVER)
 
-fclean:	clean
-	${RM} ${OBJS_DIR}
+fclean:
+	make fclean -C $(libft)/
+	make fclean -C $(printf)/
+	$(RM) $(CLIENT) $(SERVER)
 
 re: fclean all
-
