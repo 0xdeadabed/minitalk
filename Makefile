@@ -30,7 +30,7 @@ bonus : re
 
 $(NAME) : $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) $(PRINTF_DIR)
-	@(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) $(PRINTF_DIR) -lft
+	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) $(PRINTF_DIR) -lft
 
 $(OBJS_DIR) :
 	@mkdir -p $(OBJS_DIR)
@@ -45,6 +45,4 @@ fclean:	clean
 	${RM} ${OBJS_DIR}
 
 re: fclean all
-
-.PHONY:	all bonus clean fclean re
 
