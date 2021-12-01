@@ -6,7 +6,7 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:42:15 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/27 12:47:48 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/01 08:54:53 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	convert_msg(int signum)
 	static int	byte;
 
 	if (signum == SIGUSR1)
-		byte += 1 << (31 - power);
+		byte += 1 << (7 - power);
 	power++;
-	if (power == 32)
+	if (power == 8)
 	{
 		ft_printf("%c", byte);
 		if (byte == '\0')

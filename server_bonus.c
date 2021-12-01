@@ -6,30 +6,38 @@
 /*   By: hsabir <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:42:15 by hsabir            #+#    #+#             */
-/*   Updated: 2021/11/25 14:40:07 by hsabir           ###   ########.fr       */
+/*   Updated: 2021/12/01 09:05:46 by hsabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minitalk.h"
+#include "minitalk.h"
 
-void	handler_siguser1(int signum)
+void	convert_msg(int signum)
 {
-	printf("signal %d has been recived !\n", signum);
+	static int	power;
+	static int	byte;
+
+	if (signum == SIGUSR1)
+		byte += 1 << (31 - power);
+	power++;
+	if (power == 32)
+	{
+		ft_printf("%c", byte);
+		if (byte == '\0')
+			exit (EXIT_SUCCESS);
+		power = 0;
+		byte = 0;
+	}
 }
 
-int	main()
+int	main(void)
 {
-	struct sigaction	user1;
-	struct sigaction	user2;
 	pid_t	pid;
-	
+
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
+	signal(SIGUSR1, convert_msg);
+	signal(SIGUSR2, convert_msg);
 	while (1)
-	{
-		ft_memset(&user1, 0, sizeof(struct sigaction));
-		ft_memset(&user2, 0, sizeof(struct sigaction));
-		user1.sa_flag = SA_SIGINFO();
-		user2.sa_flag = SA_SIGINFO();
-	}
+		pause();
 }
